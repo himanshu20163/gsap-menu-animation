@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+marquee {
+  width: 100%;
+  height: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  font-size: 16px;
+  color: white;
+  padding: 5px 0;
+}
+
+/* cursor pointer */
+
+.cursor {
+  position: fixed;
+  background-color: yellow;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform, 0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: scale(1);
+}
+.cursor.active {
+  opacity: 1;
+  transform: scale(0);
+}
+.cursor.menu-active {
+  opacity: 1;
+  transform: scale(0);
+}
+.cursor.hovered {
+  opacity: 1;
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform, 0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity, 0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) background;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(2px, 2px);
+}
+.cursor-follower.active {
+  opacity: 1;
+  transform: scale(3);
+}
+.cursor-follower.menu-active {
+  opacity: 1;
+  transform: scale(3);
+}
+.cursor-follower.hovered {
+  opacity: 1;
+}
+
+/* end cube */
+
+
+h1 {
+  font-size: 36px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 24px;
+  text-transform: uppercase;
+} 
+
+/* header menu css */
+
+#header {
+  background: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  text-align: left;
+}
+#header .first-row{
+ display: flex;
+ width: 85%;
+ justify-content: space-between;
+ align-items: center;
+ margin:0px auto;
+ height: auto;
+ padding:10px 0px;
+}
+
+#header .first-row h5{
+  color: #fff;
+  font-size: 21px;
+}
+
+#header .wrap{
+  padding: 20px 0px;
+  margin: 0 auto;
+  width: 90%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50);
+}
+
+#header ul {
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+}
+#header ul li {
+  display: inline-block;
+  margin: 0 30px;
+}
+#header ul li a {
+  font-size: 24px;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+#header ul li .menu-inside, #header ul li .menu-inside2 {
+  display: none;
+}
+
+/* header menu hover css  */
+
+#header ul li:hover span {
+  width: 100%;
+  height: auto;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  /* margin-top: -20px; */
+  /* border: 1px solid yellow; */
+}
+
+#header ul li:hover .menu-inside span , #header ul li:hover .menu-inside2 span   {
+  font-size: 24px;
+  color: #ffe225;
+  width: auto;
+  padding:5px 40px;
+  border-radius: 80px;
+  border: 1px solid #ffe225;
+}
+
+#header ul li:hover a {
+  visibility: hidden;
+  /* Hide the hovered link text */
+}
+
+/* Blur all other <a> elements when hovering on any <li> */
+#header ul:hover li a {
+  filter: blur(3px);
+}
+
+/* Prevent blur on the currently hovered <li> */
+#header ul li:hover a {
+  filter: none;
+}
+
+/* cube design css */ 
+
+.scene {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.cube {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  transform-style: preserve-3d;
+  transform: rotateX(30deg) rotateY(30deg);
+  animation: rotate 5s linear infinite;
+}
+
+.face {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0px 0px 1px #d4d4d4;
+}
+
+.front  { transform: rotateY(  0deg) translateZ(10px); }
+.back   { transform: rotateY(180deg) translateZ(10px); }
+.left   { transform: rotateY(-90deg) translateZ(10px); }
+.right  { transform: rotateY( 90deg) translateZ(10px); }
+.top    { transform: rotateX( 90deg) translateZ(10px); }
+.bottom { transform: rotateX(-90deg) translateZ(10px); }
+
+@keyframes rotate {
+  from { transform: rotateX(30deg) rotateY(0deg); }
+  to   { transform: rotateX(30deg) rotateY(360deg); }
+}
+
+/* responsive menu css */
+.hamburger {
+  display: block;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+            .hamburger {
+                display: none;
+            }
+            /* .menu {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                background: none;
+                top: auto;
+                width: auto;
+            }
+            .menu a {
+                border-bottom: none;
+                padding: 10px 20px;
+            } */
+        }
+
+
